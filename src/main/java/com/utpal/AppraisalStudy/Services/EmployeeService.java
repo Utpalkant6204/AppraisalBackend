@@ -10,7 +10,7 @@ public interface EmployeeService {
     public EmployeeDTO saveEmployees(Employees employees);
 
 
-    List<EmployeeWithListDTO> getAllEmployees();
+    public List<EmployeeWithListDTO> getAllEmployees();
 
-    public EmployeeWithListDTO getEmployee(long Id);
+    public EmployeeDTO getEmployee(long Id);
 }
