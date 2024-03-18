@@ -86,4 +86,22 @@ public class TaskServiceImpl implements TaskService{
             throw new UserNotFoundException("Task not found with id: " + id);
         }
     }
+
+    @Override
+    public boolean deleteTasks(long id) {
+        Optional<Tasks> optionalTask = taskRepository.findById(id);
+
+        if(optionalTask.isPresent())
+        {
+            taskRepository.deleteById(id);
+            Optional<Tasks> tsk = taskRepository.findById(id);
+
+            return tsk.isEmpty();
+
+        }
+        else {
+            throw new UserNotFoundException("Task not found with id: " + id);
+        }
+
+    }
 }
