@@ -2,6 +2,8 @@ package com.utpal.AppraisalStudy.Entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 
 @Entity
 public class Tasks {
@@ -10,10 +12,16 @@ public class Tasks {
     private long id;
 
     @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
-    private long timeTakenForCompletion; // In minutes
+    private LocalDate startDate;
+
+    @Column(nullable = false)
+    private LocalDate endDate;
 
     @Column(nullable = false)
     private boolean isAppraisable;
@@ -30,23 +38,31 @@ public class Tasks {
     public Tasks() {
     }
 
-    public Tasks(long id, String description, long timeTakenForCompletion, boolean isAppraisable, long rating, Employees employees) {
+    public Tasks(long id, String name, String description, LocalDate startDate, LocalDate endDate, boolean isAppraisable, long rating, Employees employees) {
         this.id = id;
+        this.name = name;
         this.description = description;
-        this.timeTakenForCompletion = timeTakenForCompletion;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.isAppraisable = isAppraisable;
         this.rating = rating;
         this.employees = employees;
     }
 
-// Getters and setters
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -57,12 +73,20 @@ public class Tasks {
         this.description = description;
     }
 
-    public long getTimeTakenForCompletion() {
-        return timeTakenForCompletion;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setTimeTakenForCompletion(long timeTakenForCompletion) {
-        this.timeTakenForCompletion = timeTakenForCompletion;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public boolean isAppraisable() {
