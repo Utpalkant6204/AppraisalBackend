@@ -5,10 +5,7 @@ import com.utpal.AppraisalStudy.Services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,24 @@ public class NotificationController {
     public ResponseEntity<List<Notification>> getAllNotification(){
         List<Notification> notication = notificationService.getAllNotification();
         return new ResponseEntity<>(notication, HttpStatus.OK);
+    }
+
+    @PostMapping("/saveNotification")
+    public ResponseEntity<Notification> saveNotification(@RequestBody Notification notification){
+        Notification ntfy = notificationService.saveNotification(notification);
+        return new ResponseEntity<>(ntfy, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/deleteAllNotification")
+    public ResponseEntity<Boolean> deleteAllNotifications(){
+        boolean res = notificationService.deleteAllNotifications();
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}/deleteNotification")
+    public ResponseEntity<Boolean> deleteNotification(@PathVariable("id") long id){
+        boolean res = notificationService.deleteNotification(id);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
 }

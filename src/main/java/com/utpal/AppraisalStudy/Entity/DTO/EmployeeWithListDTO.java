@@ -13,6 +13,10 @@ public class EmployeeWithListDTO {
     private String designation;
     private long tenure;
 
+    private boolean notifybyemployee = false;
+
+    private boolean noifybyadmin = false;
+
     private List<TaskDTO> tasks= new ArrayList<>();
 
     public long getId() {
@@ -79,4 +83,19 @@ public class EmployeeWithListDTO {
         this.tasks = tasks;
     }
 
+    public boolean isNotifybyemployee() {
+        return notifybyemployee;
+    }
+
+    public void setNotifybyemployee(boolean notifybyemployee) {
+        this.notifybyemployee = notifybyemployee;
+    }
+
+    public boolean isNoifybyadmin() {
+        return noifybyadmin;
+    }
+
+    public void setNoifybyadmin(boolean noifybyadmin) {
+        this.noifybyadmin = noifybyadmin;
+    }
 }

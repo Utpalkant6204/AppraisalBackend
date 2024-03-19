@@ -49,6 +49,11 @@ public class Employees {
     @Transient
     private long tenure;
 
+    private boolean notifybyemployee = false;
+
+    private boolean noifybyadmin = false;
+
+
     @OneToMany(mappedBy = "employees", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Tasks> tasks= new HashSet<>();
 
@@ -57,7 +62,7 @@ public class Employees {
     public Employees() {
     }
 
-    public Employees(long id, String name, String email, String password, String phoneNumber, LocalDate dateOfJoining, String designation, Set<Tasks> tasks) {
+    public Employees(long id, String name, String email, String password, String phoneNumber, LocalDate dateOfJoining, String designation, boolean isAdmin, long tenure, boolean notifybyemployee, boolean noifybyadmin, Set<Tasks> tasks) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -65,10 +70,14 @@ public class Employees {
         this.phoneNumber = phoneNumber;
         this.dateOfJoining = dateOfJoining;
         this.designation = designation;
+        this.isAdmin = isAdmin;
+        this.tenure = tenure;
+        this.notifybyemployee = notifybyemployee;
+        this.noifybyadmin = noifybyadmin;
         this.tasks = tasks;
     }
 
-    // Getters and setters
+// Getters and setters
 
 
     public long getId() {
@@ -151,6 +160,22 @@ public class Employees {
         this.tasks = tasks;
     }
 
+    public boolean isNotifybyemployee() {
+        return notifybyemployee;
+    }
+
+    public void setNotifybyemployee(boolean notifybyemployee) {
+        this.notifybyemployee = notifybyemployee;
+    }
+
+    public boolean isNoifybyadmin() {
+        return noifybyadmin;
+    }
+
+    public void setNoifybyadmin(boolean noifybyadmin) {
+        this.noifybyadmin = noifybyadmin;
+    }
+
     @PostLoad
     @PrePersist
     private void calculateAndSetTenure() {
@@ -159,3 +184,4 @@ public class Employees {
         this.tenure = period.toTotalMonths();
     }
 }
+
