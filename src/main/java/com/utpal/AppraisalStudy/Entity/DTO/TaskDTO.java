@@ -14,7 +14,6 @@ public class TaskDTO {
 
     private LocalDate endDate;
     private boolean isAppraisable;
-
     private long rating;
 
     public long getId() {

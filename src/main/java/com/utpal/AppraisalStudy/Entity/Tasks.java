@@ -26,7 +26,8 @@ public class Tasks {
     @Column(nullable = false)
     private boolean isAppraisable;
 
-    private long rating = 0;
+    private long rating = -1;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
@@ -112,4 +113,5 @@ public class Tasks {
     public void setEmployees(Employees employees) {
         this.employees = employees;
     }
+
 }
