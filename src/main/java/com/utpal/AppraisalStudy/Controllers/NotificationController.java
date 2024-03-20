@@ -1,6 +1,8 @@
 package com.utpal.AppraisalStudy.Controllers;
 
+import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Entity.Notification;
+import com.utpal.AppraisalStudy.Services.EmployeeService;
 import com.utpal.AppraisalStudy.Services.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ public class NotificationController {
 
     @Autowired
     private NotificationService notificationService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping("/getNotifications")
     public ResponseEntity<List<Notification>> getAllNotification(){
@@ -39,6 +44,12 @@ public class NotificationController {
     public ResponseEntity<Boolean> deleteNotification(@PathVariable("id") long id){
         boolean res = notificationService.deleteNotification(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/updateNotification")
+    public ResponseEntity<Boolean> updateNotifyByAdmin(@PathVariable("id") long id, @RequestBody Employees employees){
+        boolean upd = employeeService.updateNotifyByAdmin(id, employees);
+        return new ResponseEntity<>(upd, HttpStatus.OK);
     }
 
 }

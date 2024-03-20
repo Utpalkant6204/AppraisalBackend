@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -23,6 +24,9 @@ public class LoginServiceImpl implements LoginService{
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public LoginResponseDTO checkValidation(LoginDTO loginDTO) {
         String email = loginDTO.getEmail();
@@ -33,7 +37,7 @@ public class LoginServiceImpl implements LoginService{
 
         if (empOptional.isPresent()) {
             Employees emp = empOptional.get();
-            if (emp.getEmail().equals(email) && emp.getPassword().equals(password)) {
+            if (emp.getEmail().equals(email) && passwordEncoder.matches(password,emp.getPassword())) {
                 LoginResponseDTO loginResponseDTO = modelMapper.map(emp, LoginResponseDTO.class);
                 loginResponseDTO.setMessage("success");
                 loginResponseDTO.setStatus((long) HttpStatus.FOUND.value());

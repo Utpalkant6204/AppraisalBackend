@@ -15,4 +15,7 @@ public interface EmployeeService {
     public EmployeeDTO getEmployee(long Id);
 
     public EmployeeWithListDTO getEmployeeDetails(long id);
+
+
+    public boolean updateNotifyByAdmin(long id, Employees employees);
 }

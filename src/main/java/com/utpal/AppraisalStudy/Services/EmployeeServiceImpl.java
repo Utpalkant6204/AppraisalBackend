@@ -4,11 +4,11 @@ import com.utpal.AppraisalStudy.Entity.DTO.EmployeeDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.EmployeeWithListDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
-import com.utpal.AppraisalStudy.Entity.Tasks;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -23,8 +23,13 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public EmployeeDTO saveEmployees(Employees employees) {
+        String password = passwordEncoder.encode(employees.getPassword());
+        employees.setPassword(password);
         Employees emp =  employeeRepository.save(employees);
         EmployeeDTO edto = modelMapper.map(emp, EmployeeDTO.class);
         return edto;
@@ -60,6 +65,19 @@ public class EmployeeServiceImpl implements EmployeeService{
         }
     }
 
+    @Override
+    public boolean updateNotifyByAdmin(long id, Employees employees) {
+        Optional<Employees> emp = employeeRepository.findById(id);
+
+        if(emp.isPresent()){
+            Employees employees1 = emp.get();
+            employees1.setNoifybyadmin(employees.isNoifybyadmin());
+            employeeRepository.save(employees1);
+            return true;
+        }else{
+            throw new UserNotFoundException("Employee Not found with Id : " + id);
+        }
+    }
 
     private EmployeeWithListDTO mapEmployeeWithSortedTasks(Employees employees) {
         EmployeeWithListDTO employeeDTO = this.modelMapper.map(employees, EmployeeWithListDTO.class);
