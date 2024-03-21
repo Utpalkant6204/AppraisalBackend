@@ -1,5 +1,7 @@
 package com.utpal.AppraisalStudy.Services;
 
+import com.utpal.AppraisalStudy.Entity.Attributes;
+import com.utpal.AppraisalStudy.Entity.DTO.AttributeDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.EmployeeDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.EmployeeWithListDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
@@ -74,6 +76,23 @@ public class EmployeeServiceImpl implements EmployeeService{
             employees1.setNoifybyadmin(employees.isNoifybyadmin());
             employeeRepository.save(employees1);
             return true;
+        }else{
+            throw new UserNotFoundException("Employee Not found with Id : " + id);
+        }
+    }
+
+    @Override
+    public AttributeDTO saveAttribute(long id, AttributeDTO attributeDTO) {
+        Optional<Employees> optionalEmployees = employeeRepository.findById(id);
+
+        if(optionalEmployees.isPresent()){
+            Employees employees = optionalEmployees.get();
+            Attributes attributes = modelMapper.map(attributeDTO, Attributes.class);
+            attributes.setEmployees(employees);
+            employees.setAttributes(attributes);
+            Employees e1 = employeeRepository.save(employees);
+            Attributes attributeDTO1 = e1.getAttributes();
+            return modelMapper.map(attributeDTO1, AttributeDTO.class);
         }else{
             throw new UserNotFoundException("Employee Not found with Id : " + id);
         }

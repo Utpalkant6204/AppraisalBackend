@@ -1,5 +1,7 @@
 package com.utpal.AppraisalStudy.Entity.DTO;
 
+import com.utpal.AppraisalStudy.Entity.Attributes;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -18,6 +20,8 @@ public class EmployeeWithListDTO {
     private boolean noifybyadmin = false;
 
     private List<TaskDTO> tasks= new ArrayList<>();
+
+    private AttributeDTO attributes;
 
     public long getId() {
         return id;
@@ -97,5 +101,13 @@ public class EmployeeWithListDTO {
 
     public void setNoifybyadmin(boolean noifybyadmin) {
         this.noifybyadmin = noifybyadmin;
+    }
+
+    public AttributeDTO getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(AttributeDTO attributes) {
+        this.attributes = attributes;
     }
 }

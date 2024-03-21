@@ -1,5 +1,6 @@
 package com.utpal.AppraisalStudy.Services;
 
+import com.utpal.AppraisalStudy.Entity.DTO.AttributeDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.EmployeeDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.EmployeeWithListDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
@@ -18,4 +19,6 @@ public interface EmployeeService {
 
 
     public boolean updateNotifyByAdmin(long id, Employees employees);
+
+    public AttributeDTO saveAttribute(long id, AttributeDTO attributeDTO);
 }

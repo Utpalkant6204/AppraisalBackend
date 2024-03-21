@@ -57,12 +57,15 @@ public class Employees {
     @OneToMany(mappedBy = "employees", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Tasks> tasks= new HashSet<>();
 
+    @OneToOne(mappedBy = "employees", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Attributes attributes;
+
     // Constructors, getters, and setters
 
     public Employees() {
     }
 
-    public Employees(long id, String name, String email, String password, String phoneNumber, LocalDate dateOfJoining, String designation, boolean isAdmin, long tenure, boolean notifybyemployee, boolean noifybyadmin, Set<Tasks> tasks) {
+    public Employees(long id, String name, String email, String password, String phoneNumber, LocalDate dateOfJoining, String designation, boolean isAdmin, long tenure, boolean notifybyemployee, boolean noifybyadmin, Set<Tasks> tasks, Attributes attributes) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -75,9 +78,10 @@ public class Employees {
         this.notifybyemployee = notifybyemployee;
         this.noifybyadmin = noifybyadmin;
         this.tasks = tasks;
+        this.attributes = attributes;
     }
 
-// Getters and setters
+    // Getters and setters
 
 
     public long getId() {
@@ -174,6 +178,14 @@ public class Employees {
 
     public void setNoifybyadmin(boolean noifybyadmin) {
         this.noifybyadmin = noifybyadmin;
+    }
+
+    public Attributes getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Attributes attributes) {
+        this.attributes = attributes;
     }
 
     @PostLoad

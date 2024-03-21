@@ -1,9 +1,10 @@
 package com.utpal.AppraisalStudy.Controllers;
 
-import com.utpal.AppraisalStudy.Entity.DTO.EmployeeDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.EmployeeWithListDTO;
+import com.utpal.AppraisalStudy.Entity.DTO.*;
 import com.utpal.AppraisalStudy.Entity.Employees;
+import com.utpal.AppraisalStudy.Entity.Tasks;
 import com.utpal.AppraisalStudy.Services.EmployeeService;
+import com.utpal.AppraisalStudy.Services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,21 +20,13 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/getEmployees")
-    public ResponseEntity<List<EmployeeWithListDTO>> getEmployees(){
-        List<EmployeeWithListDTO> emp = employeeService.getAllEmployees();
-        return new ResponseEntity<>(emp, HttpStatus.OK);
-    }
+    @Autowired
+    private TaskService taskService;
 
     @GetMapping("/{id}/getEmployee")
     public ResponseEntity<EmployeeDTO> getEmployee(@PathVariable("id") long Id){
         EmployeeDTO employeeWithListDTO = employeeService.getEmployee(Id);
         return new ResponseEntity<>(employeeWithListDTO, HttpStatus.OK);
-    }
-    @PostMapping("/saveEmployee")
-    public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody Employees employees){
-        EmployeeDTO emp = employeeService.saveEmployees(employees);
-        return new ResponseEntity<>(emp, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}/employeeDetails")
@@ -41,4 +34,23 @@ public class EmployeeController {
         EmployeeWithListDTO emp = employeeService.getEmployeeDetails(id);
         return new ResponseEntity<>(emp, HttpStatus.OK);
     }
+
+    @PostMapping("/{id}/saveTask")
+    public ResponseEntity<PlainTaskResponse> saveTask(@RequestBody Tasks tasks, @PathVariable("id") long Id){
+        PlainTaskResponse tsk = taskService.saveTask(tasks, Id);
+        return new ResponseEntity<>(tsk, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}/updateTask")
+    public ResponseEntity<TaskDTO> upDateTask(@PathVariable("id") long Id, @RequestBody  TaskDTO taskDTO){
+        TaskDTO tsk =  taskService.updateTasks(Id, taskDTO);
+        return new ResponseEntity<>(tsk, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}/deleteTask")
+    public ResponseEntity<Boolean> deleteTasks(@PathVariable("id") long id){
+        boolean val = taskService.deleteTasks(id);
+        return new ResponseEntity<>(val, HttpStatus.OK);
+    }
+
 }
