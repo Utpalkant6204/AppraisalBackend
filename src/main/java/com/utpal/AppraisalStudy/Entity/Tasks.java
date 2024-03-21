@@ -26,7 +26,7 @@ public class Tasks {
     @Column(nullable = false)
     private boolean isAppraisable;
 
-    private long rating = -1;
+    private long rating = 0;
 
 
     @ManyToOne(fetch = FetchType.LAZY)

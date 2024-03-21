@@ -9,25 +9,25 @@ public class Attributes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long java;
-    private long python;
-    private long react;
+    private long java=0;
+    private long python=0;
+    private long react=0;
 
-    private long angular;
+    private long angular=0;
 
-    private long flutter;
+    private long flutter=0;
 
-    private long uiDevelopment;
+    private long uiDevelopment=0;
 
-    private long apiDevelopment;
+    private long apiDevelopment=0;
 
-    private long deadlines;
+    private long deadlines=0;
 
-    private long projectManagement;
+    private long projectManagement=0;
 
-    private long communication;
+    private long communication=0;
 
-    private long behaviour;
+    private long behaviour=0;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
