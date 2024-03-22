@@ -48,4 +48,10 @@ public class AdminController {
         AttributeDTO attributeDTO1 = employeeService.saveAttribute(id, attributeDTO);
         return new ResponseEntity<>(attributeDTO1, HttpStatus.CREATED);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<EmployeeWithListDTO>> searchEmployee(@RequestParam("name") String s){
+        List<EmployeeWithListDTO> emp = employeeService.searchEmployees(s);
+        return new ResponseEntity<>(emp, HttpStatus.OK);
+    }
 }

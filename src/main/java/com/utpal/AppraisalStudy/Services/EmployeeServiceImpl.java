@@ -39,7 +39,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public List<EmployeeWithListDTO> getAllEmployees() {
-        List<Employees> emp = employeeRepository.findAllByOrderByIdAsc();
+        List<Employees> emp = employeeRepository.findAllByOrderByIdAsc().stream()
+                .filter(employee -> !"admin".equalsIgnoreCase(employee.getDesignation()))
+                .toList();
         return emp.stream().map(this::mapEmployeeWithSortedTasks)
                 .collect(Collectors.toList());
     }
@@ -96,6 +98,16 @@ public class EmployeeServiceImpl implements EmployeeService{
         }else{
             throw new UserNotFoundException("Employee Not found with Id : " + id);
         }
+    }
+
+    @Override
+    public List<EmployeeWithListDTO> searchEmployees(String s) {
+        List<Employees> emp = employeeRepository.searchEmployee(s)
+                .stream()
+                .filter(employee -> !"admin".equalsIgnoreCase(employee.getDesignation()))
+                .toList();
+        return emp.stream().map(this::mapEmployeeWithSortedTasks)
+                .collect(Collectors.toList());
     }
 
     private EmployeeWithListDTO mapEmployeeWithSortedTasks(Employees employees) {

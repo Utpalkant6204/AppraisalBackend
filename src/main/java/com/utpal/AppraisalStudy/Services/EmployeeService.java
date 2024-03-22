@@ -21,4 +21,6 @@ public interface EmployeeService {
     public boolean updateNotifyByAdmin(long id, Employees employees);
 
     public AttributeDTO saveAttribute(long id, AttributeDTO attributeDTO);
+
+    public List<EmployeeWithListDTO> searchEmployees(String s);
 }
