@@ -1,16 +1,13 @@
 package com.utpal.AppraisalStudy.Controllers;
 
 import com.utpal.AppraisalStudy.Entity.DTO.*;
-import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Entity.Tasks;
-import com.utpal.AppraisalStudy.Services.EmployeeService;
-import com.utpal.AppraisalStudy.Services.TaskService;
+import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;
+import com.utpal.AppraisalStudy.Services.Interfaces.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin("*")

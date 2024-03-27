@@ -4,8 +4,8 @@ import com.utpal.AppraisalStudy.Entity.DTO.EmployeeDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.LoginDTO;
 import com.utpal.AppraisalStudy.Entity.DTO.LoginResponseDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
-import com.utpal.AppraisalStudy.Services.EmployeeService;
-import com.utpal.AppraisalStudy.Services.LoginService;
+import com.utpal.AppraisalStudy.Services.Interfaces.AuthService;
+import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
-    private LoginService loginService;
+    private AuthService loginService;
 
     @Autowired
     private EmployeeService employeeService;

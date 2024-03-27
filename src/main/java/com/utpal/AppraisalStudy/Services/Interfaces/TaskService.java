@@ -1,4 +1,4 @@
-package com.utpal.AppraisalStudy.Services;
+package com.utpal.AppraisalStudy.Services.Interfaces;
 
 import com.utpal.AppraisalStudy.Entity.DTO.PlainTaskResponse;
 import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;

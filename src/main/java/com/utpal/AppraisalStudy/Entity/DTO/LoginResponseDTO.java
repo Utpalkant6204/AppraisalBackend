@@ -15,6 +15,8 @@ public class LoginResponseDTO {
 
     private long Status;
 
+    private String token;
+
     public String getEmail() {
         return email;
     }
@@ -54,5 +56,17 @@ public class LoginResponseDTO {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setStatus(long status) {
+        Status = status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

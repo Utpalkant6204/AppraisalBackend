@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Employees {
+public class Employees{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

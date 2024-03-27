@@ -1,4 +1,4 @@
-package com.utpal.AppraisalStudy.Services;
+package com.utpal.AppraisalStudy.Services.Impl;
 
 import com.utpal.AppraisalStudy.Entity.Attributes;
 import com.utpal.AppraisalStudy.Entity.DTO.AttributeDTO;
@@ -8,6 +8,7 @@ import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
+import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +18,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;

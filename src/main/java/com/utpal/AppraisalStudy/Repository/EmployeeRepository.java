@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employees, Long> {
     public List<Employees> findAllByOrderByIdAsc();
-    public Employees findByEmail(String email);
+    public Optional<Employees> findByEmail(String email);
 
     @Query("SELECT p FROM Employees p WHERE " +
             "p.name LIKE CONCAT('%',:s, '%')")

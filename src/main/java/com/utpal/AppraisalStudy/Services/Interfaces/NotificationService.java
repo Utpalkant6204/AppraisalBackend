@@ -1,4 +1,4 @@
-package com.utpal.AppraisalStudy.Services;
+package com.utpal.AppraisalStudy.Services.Interfaces;
 
 import com.utpal.AppraisalStudy.Entity.Notification;
 

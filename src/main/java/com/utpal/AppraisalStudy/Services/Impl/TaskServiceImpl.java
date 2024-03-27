@@ -1,4 +1,4 @@
-package com.utpal.AppraisalStudy.Services;
+package com.utpal.AppraisalStudy.Services.Impl;
 
 import com.utpal.AppraisalStudy.Entity.DTO.PlainTaskResponse;
 import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
@@ -7,6 +7,7 @@ import com.utpal.AppraisalStudy.Entity.Tasks;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
 import com.utpal.AppraisalStudy.Repository.TaskRepository;
+import com.utpal.AppraisalStudy.Services.Interfaces.TaskService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class TaskServiceImpl implements TaskService{
+public class TaskServiceImpl implements TaskService {
 
     @Autowired
     private TaskRepository taskRepository;

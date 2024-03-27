@@ -1,13 +1,12 @@
-package com.utpal.AppraisalStudy.Services;
+package com.utpal.AppraisalStudy.Services.Impl;
 
-import ch.qos.logback.core.pattern.parser.OptionTokenizer;
 import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Entity.Notification;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
 import com.utpal.AppraisalStudy.Repository.NotificationRepository;
+import com.utpal.AppraisalStudy.Services.Interfaces.NotificationService;
 import jakarta.transaction.Transactional;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NotificationServiceImpl implements NotificationService{
+public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
     private NotificationRepository notificationRepository;
