@@ -1,7 +1,6 @@
 package com.utpal.AppraisalStudy.Entity.DTO;
 
 public class AttributeDTO {
-    private long id;
     private long java=0;
     private long python=0;
     private long react=0;
@@ -21,15 +20,6 @@ public class AttributeDTO {
     private long communication=0;
 
     private long behaviour=0;
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public long getJava() {
         return java;

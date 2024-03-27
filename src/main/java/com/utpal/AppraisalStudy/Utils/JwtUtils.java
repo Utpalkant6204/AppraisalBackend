@@ -50,7 +50,7 @@ public class JwtUtils {
     public static String generateToken(String email) {
 
         Date curDate = new Date();
-        var exp = DateUtils.addMinutes(curDate,10);
+        var exp = DateUtils.addMinutes(curDate,60);
         return Jwts.builder()
                 .id(UUID.randomUUID().toString())
                 .issuer(Issuer)

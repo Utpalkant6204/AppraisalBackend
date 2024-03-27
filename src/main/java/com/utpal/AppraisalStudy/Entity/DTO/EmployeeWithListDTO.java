@@ -21,7 +21,7 @@ public class EmployeeWithListDTO {
 
     private List<TaskDTO> tasks= new ArrayList<>();
 
-    private AttributeDTO attributes;
+    private AttributeDTO attributes = new AttributeDTO();
 
     public long getId() {
         return id;
