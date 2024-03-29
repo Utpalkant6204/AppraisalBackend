@@ -1,15 +1,28 @@
-package com.utpal.AppraisalStudy.Entity.DTO;
+package com.utpal.AppraisalStudy.DTO;
+
+import jakarta.annotation.Nullable;
 
 import java.time.LocalDate;
 
-public class PlainTaskResponse {
+
+public class TaskDTO {
+    @Nullable
+    private long id;
     private String name;
     private String description;
     private LocalDate startDate;
 
     private LocalDate endDate;
     private boolean isAppraisable;
+    private long rating;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -49,5 +62,13 @@ public class PlainTaskResponse {
 
     public void setAppraisable(boolean appraisable) {
         isAppraisable = appraisable;
+    }
+
+    public long getRating() {
+        return rating;
+    }
+
+    public void setRating(long rating) {
+        this.rating = rating;
     }
 }

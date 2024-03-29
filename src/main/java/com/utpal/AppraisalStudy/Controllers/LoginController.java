@@ -1,8 +1,8 @@
 package com.utpal.AppraisalStudy.Controllers;
 
-import com.utpal.AppraisalStudy.Entity.DTO.EmployeeDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.LoginDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.LoginResponseDTO;
+import com.utpal.AppraisalStudy.DTO.EmployeeDTO;
+import com.utpal.AppraisalStudy.DTO.LoginDTO;
+import com.utpal.AppraisalStudy.DTO.LoginResponseDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Services.Interfaces.AuthService;
 import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;

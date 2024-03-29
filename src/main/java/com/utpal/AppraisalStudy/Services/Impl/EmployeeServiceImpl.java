@@ -1,10 +1,10 @@
 package com.utpal.AppraisalStudy.Services.Impl;
 
 import com.utpal.AppraisalStudy.Entity.Attributes;
-import com.utpal.AppraisalStudy.Entity.DTO.AttributeDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.EmployeeDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.EmployeeWithListDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
+import com.utpal.AppraisalStudy.DTO.AttributeDTO;
+import com.utpal.AppraisalStudy.DTO.EmployeeDTO;
+import com.utpal.AppraisalStudy.DTO.EmployeeWithListDTO;
+import com.utpal.AppraisalStudy.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
@@ -90,12 +90,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if(optionalEmployees.isPresent()){
             Employees employees = optionalEmployees.get();
-            Attributes attributes = modelMapper.map(attributeDTO, Attributes.class);
-            attributes.setEmployees(employees);
-            employees.setAttributes(attributes);
-            Employees e1 = employeeRepository.save(employees);
-            Attributes attributeDTO1 = e1.getAttributes();
-            return modelMapper.map(attributeDTO1, AttributeDTO.class);
+            if (employees.getAttributes() != null) {
+                Attributes existingAttributes = employees.getAttributes();
+                modelMapper.map(attributeDTO, existingAttributes);
+                employeeRepository.save(employees);
+                return attributeDTO;
+            } else {
+
+                Attributes newAttributes = modelMapper.map(attributeDTO, Attributes.class);
+                newAttributes.setEmployees(employees);
+                employees.setAttributes(newAttributes);
+                Employees updatedEmployee = employeeRepository.save(employees);
+                Attributes updatedAttributes = updatedEmployee.getAttributes();
+                return modelMapper.map(updatedAttributes, AttributeDTO.class);
+            }
         }else{
             throw new UserNotFoundException("Employee Not found with Id : " + id);
         }

@@ -1,7 +1,7 @@
 package com.utpal.AppraisalStudy.Services.Impl;
 
-import com.utpal.AppraisalStudy.Entity.DTO.LoginDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.LoginResponseDTO;
+import com.utpal.AppraisalStudy.DTO.LoginDTO;
+import com.utpal.AppraisalStudy.DTO.LoginResponseDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +25,6 @@ public class LoginServiceImpl implements AuthService {
 //
     @Autowired
     private ModelMapper modelMapper;
-
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -61,13 +56,10 @@ public class LoginServiceImpl implements AuthService {
 //        }
         var authToken = new UsernamePasswordAuthenticationToken(email, password);
         var authenticate = authenticationManager.authenticate(authToken);
-        System.out.println(authenticate.getName());
 
         Optional<Employees> employees = employeeRepository.findByEmail(authenticate.getName());
         if(employees.isPresent()){
             Employees emp = employees.get();
-
-
             LoginResponseDTO loginResponseDTO = modelMapper.map(emp, LoginResponseDTO.class);
             loginResponseDTO.setMessage("success");;
             loginResponseDTO.setStatus((long) HttpStatus.FOUND.value());
@@ -75,7 +67,7 @@ public class LoginServiceImpl implements AuthService {
             return loginResponseDTO;
         }
         else{
-            throw  new UserNotFoundException("User Not Found");
+            throw new UserNotFoundException("User Not Found");
         }
     }
 }

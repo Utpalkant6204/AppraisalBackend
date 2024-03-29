@@ -1,7 +1,7 @@
 package com.utpal.AppraisalStudy.Services.Impl;
 
-import com.utpal.AppraisalStudy.Entity.DTO.PlainTaskResponse;
-import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
+import com.utpal.AppraisalStudy.DTO.PlainTaskResponse;
+import com.utpal.AppraisalStudy.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
 import com.utpal.AppraisalStudy.Entity.Tasks;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;

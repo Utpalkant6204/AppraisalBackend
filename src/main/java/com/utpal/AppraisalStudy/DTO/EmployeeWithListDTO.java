@@ -1,6 +1,4 @@
-package com.utpal.AppraisalStudy.Entity.DTO;
-
-import com.utpal.AppraisalStudy.Entity.Attributes;
+package com.utpal.AppraisalStudy.DTO;
 
 import java.time.LocalDate;
 import java.util.*;

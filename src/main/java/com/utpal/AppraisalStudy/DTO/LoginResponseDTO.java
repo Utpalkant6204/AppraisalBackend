@@ -1,4 +1,4 @@
-package com.utpal.AppraisalStudy.Entity.DTO;
+package com.utpal.AppraisalStudy.DTO;
 
 import jakarta.annotation.Nullable;
 import org.springframework.http.HttpStatus;

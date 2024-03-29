@@ -1,8 +1,8 @@
 package com.utpal.AppraisalStudy.Controllers;
 
-import com.utpal.AppraisalStudy.Entity.DTO.AttributeDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.EmployeeWithListDTO;
-import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
+import com.utpal.AppraisalStudy.DTO.AttributeDTO;
+import com.utpal.AppraisalStudy.DTO.EmployeeWithListDTO;
+import com.utpal.AppraisalStudy.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;
 import com.utpal.AppraisalStudy.Services.Interfaces.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;

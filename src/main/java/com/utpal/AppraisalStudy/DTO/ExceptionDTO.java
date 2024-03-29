@@ -1,4 +1,4 @@
-package com.utpal.AppraisalStudy.Entity.DTO;
+package com.utpal.AppraisalStudy.DTO;
 
 public class ExceptionDTO {
     private String message;

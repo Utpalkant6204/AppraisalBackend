@@ -1,4 +1,4 @@
-package com.utpal.AppraisalStudy.Entity.DTO;
+package com.utpal.AppraisalStudy.DTO;
 
 public class AttributeDTO {
     private long java=0;

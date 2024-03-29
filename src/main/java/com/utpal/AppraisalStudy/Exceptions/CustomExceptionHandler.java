@@ -1,6 +1,6 @@
 package com.utpal.AppraisalStudy.Exceptions;
 
-import com.utpal.AppraisalStudy.Entity.DTO.ExceptionDTO;
+import com.utpal.AppraisalStudy.DTO.ExceptionDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

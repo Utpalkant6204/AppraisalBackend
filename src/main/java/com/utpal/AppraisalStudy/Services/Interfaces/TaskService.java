@@ -1,7 +1,7 @@
 package com.utpal.AppraisalStudy.Services.Interfaces;
 
-import com.utpal.AppraisalStudy.Entity.DTO.PlainTaskResponse;
-import com.utpal.AppraisalStudy.Entity.DTO.TaskDTO;
+import com.utpal.AppraisalStudy.DTO.PlainTaskResponse;
+import com.utpal.AppraisalStudy.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Tasks;
 
 import java.util.List;

@@ -1,6 +1,9 @@
 package com.utpal.AppraisalStudy.Controllers;
 
-import com.utpal.AppraisalStudy.Entity.DTO.*;
+import com.utpal.AppraisalStudy.DTO.EmployeeDTO;
+import com.utpal.AppraisalStudy.DTO.EmployeeWithListDTO;
+import com.utpal.AppraisalStudy.DTO.PlainTaskResponse;
+import com.utpal.AppraisalStudy.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Tasks;
 import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;
 import com.utpal.AppraisalStudy.Services.Interfaces.TaskService;
