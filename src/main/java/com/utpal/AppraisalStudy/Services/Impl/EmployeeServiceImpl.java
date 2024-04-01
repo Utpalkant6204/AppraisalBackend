@@ -6,6 +6,7 @@ import com.utpal.AppraisalStudy.DTO.EmployeeDTO;
 import com.utpal.AppraisalStudy.DTO.EmployeeWithListDTO;
 import com.utpal.AppraisalStudy.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
+import com.utpal.AppraisalStudy.Exceptions.UserAlreadyExists;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
 import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;
@@ -30,12 +31,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public EmployeeDTO saveEmployees(Employees employees) {
-        String password = passwordEncoder.encode(employees.getPassword());
-        employees.setPassword(password);
-        Employees emp =  employeeRepository.save(employees);
-        EmployeeDTO edto = modelMapper.map(emp, EmployeeDTO.class);
-        return edto;
+    public EmployeeDTO saveEmployees(Employees employees) throws UserAlreadyExists {
+        Optional<Employees> emp1= employeeRepository.findByEmail(employees.getEmail());
+
+        if(emp1.isEmpty()){
+            String password = passwordEncoder.encode(employees.getPassword());
+            employees.setPassword(password);
+            Employees emp =  employeeRepository.save(employees);
+            return modelMapper.map(emp, EmployeeDTO.class);
+        }else{
+            throw new UserAlreadyExists("Email already Exists...");
+        }
+
     }
 
     @Override

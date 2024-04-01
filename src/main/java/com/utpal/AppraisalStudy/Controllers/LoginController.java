@@ -4,6 +4,7 @@ import com.utpal.AppraisalStudy.DTO.EmployeeDTO;
 import com.utpal.AppraisalStudy.DTO.LoginDTO;
 import com.utpal.AppraisalStudy.DTO.LoginResponseDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
+import com.utpal.AppraisalStudy.Exceptions.UserAlreadyExists;
 import com.utpal.AppraisalStudy.Services.Interfaces.AuthService;
 import com.utpal.AppraisalStudy.Services.Interfaces.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class LoginController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody Employees employees){
+    public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody Employees employees) throws UserAlreadyExists {
         EmployeeDTO emp = employeeService.saveEmployees(employees);
         return new ResponseEntity<>(emp, HttpStatus.CREATED);
     }

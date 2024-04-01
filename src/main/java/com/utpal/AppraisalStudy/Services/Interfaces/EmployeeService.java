@@ -4,11 +4,12 @@ import com.utpal.AppraisalStudy.DTO.AttributeDTO;
 import com.utpal.AppraisalStudy.DTO.EmployeeDTO;
 import com.utpal.AppraisalStudy.DTO.EmployeeWithListDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
+import com.utpal.AppraisalStudy.Exceptions.UserAlreadyExists;
 
 import java.util.List;
 
 public interface EmployeeService {
-    public EmployeeDTO saveEmployees(Employees employees);
+    public EmployeeDTO saveEmployees(Employees employees) throws UserAlreadyExists;
 
 
     public List<EmployeeWithListDTO> getAllEmployees();

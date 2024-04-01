@@ -19,6 +19,14 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionDTO);
     }
 
+    @ExceptionHandler(UserAlreadyExists.class)
+    public ResponseEntity<ExceptionDTO> handleSignDuplicates(UserAlreadyExists ex) {
+        ExceptionDTO exceptionDTO = new ExceptionDTO();
+        exceptionDTO.setMessage(ex.getMessage());
+        exceptionDTO.setStatus((long)HttpStatus.CONFLICT.value());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionDTO);
+    }
+
     // Add more exception handlers if needed for other custom exceptions
 }
 
