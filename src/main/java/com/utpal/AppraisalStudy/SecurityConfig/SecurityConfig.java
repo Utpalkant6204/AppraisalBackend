@@ -41,9 +41,16 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
 
         //filter
+//        http.authorizeHttpRequests(req ->
+//                req
+//                        .requestMatchers("/signup","/login").permitAll()
+//                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+//                        .requestMatchers("/employee/**").hasAuthority("Employee")
+//                        .anyRequest().authenticated()
+//        );
         http.authorizeHttpRequests(req ->
                 req
-                        .requestMatchers("/signup","/login").permitAll()
+                        .requestMatchers("/signup","login").permitAll()
                         .anyRequest().authenticated()
         );
 

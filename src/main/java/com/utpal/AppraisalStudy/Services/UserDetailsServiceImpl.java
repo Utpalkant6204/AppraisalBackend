@@ -27,13 +27,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         var appUser =  employeeRepository.findByEmail(username)
                 .orElseThrow(()-> new UserNotFoundException("Email not found"));
 
-        Set<SimpleGrantedAuthority> p;
-        if(appUser.isAdmin()){
-            p = Collections.singleton(new SimpleGrantedAuthority("Employee"));
-        }
-        else{
-            p = Collections.singleton(new SimpleGrantedAuthority("ADMIN"));
-        }
-        return new User(appUser.getEmail(), appUser.getPassword(), p);
+       // System.out.println(List.of(new SimpleGrantedAuthority(appUser.isAdmin() ? "ADMIN":"Employee")));
+//        List.of(new SimpleGrantedAuthority(appUser.isAdmin() ? "ADMIN":"Employee"))
+        return new User(appUser.getEmail(), appUser.getPassword(), List.of(new SimpleGrantedAuthority(appUser.isAdmin() ? "ADMIN":"Employee")));
     }
 }
