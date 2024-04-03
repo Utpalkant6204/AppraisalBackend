@@ -35,11 +35,11 @@ public class AdminController {
         return new ResponseEntity<>(tsk, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}/deleteTask")
-    public ResponseEntity<Boolean> deleteTasks(@PathVariable("id") long id){
-        boolean val = taskService.deleteTasks(id);
-        return new ResponseEntity<>(val, HttpStatus.OK);
-    }
+//    @DeleteMapping("/{id}/deleteTask")
+//    public ResponseEntity<Boolean> deleteTasks(@PathVariable("id") long id){
+//        boolean val = taskService.deleteTasks(id);
+//        return new ResponseEntity<>(val, HttpStatus.OK);
+//    }
 
     @PostMapping("/{id}/saveAttribute")
     public ResponseEntity<AttributeDTO> saveAttribute(@PathVariable("id") long id, @RequestBody AttributeDTO attributeDTO){

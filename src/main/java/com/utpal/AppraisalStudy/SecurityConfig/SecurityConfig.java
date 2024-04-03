@@ -50,7 +50,7 @@ public class SecurityConfig {
 //        );
         http.authorizeHttpRequests(req ->
                 req
-                        .requestMatchers("/signup","login").permitAll()
+                        .requestMatchers("/signup","/login","/changePassword").permitAll()
                         .anyRequest().authenticated()
         );
 

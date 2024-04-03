@@ -27,6 +27,14 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionDTO);
     }
 
+    @ExceptionHandler(PasswordMatcher.class)
+    public ResponseEntity<ExceptionDTO> handlePassword(PasswordMatcher passwordMatcher){
+        ExceptionDTO exceptionDTO = new ExceptionDTO();
+        exceptionDTO.setMessage(passwordMatcher.getMessage());
+        exceptionDTO.setStatus((long) HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionDTO);
+    }
+
     // Add more exception handlers if needed for other custom exceptions
 }
 

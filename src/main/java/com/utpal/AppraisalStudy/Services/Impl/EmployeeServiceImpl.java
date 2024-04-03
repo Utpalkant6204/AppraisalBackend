@@ -1,11 +1,9 @@
 package com.utpal.AppraisalStudy.Services.Impl;
 
+import com.utpal.AppraisalStudy.DTO.*;
 import com.utpal.AppraisalStudy.Entity.Attributes;
-import com.utpal.AppraisalStudy.DTO.AttributeDTO;
-import com.utpal.AppraisalStudy.DTO.EmployeeDTO;
-import com.utpal.AppraisalStudy.DTO.EmployeeWithListDTO;
-import com.utpal.AppraisalStudy.DTO.TaskDTO;
 import com.utpal.AppraisalStudy.Entity.Employees;
+import com.utpal.AppraisalStudy.Exceptions.PasswordMatcher;
 import com.utpal.AppraisalStudy.Exceptions.UserAlreadyExists;
 import com.utpal.AppraisalStudy.Exceptions.UserNotFoundException;
 import com.utpal.AppraisalStudy.Repository.EmployeeRepository;
@@ -124,6 +122,30 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .toList();
         return emp.stream().map(this::mapEmployeeWithSortedTasks)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean changePassword(ChangePasswordDTO changePasswordDTO) throws PasswordMatcher {
+
+        if(!Objects.equals(changePasswordDTO.getNewPassword(), changePasswordDTO.getConfirmPassword())){
+            throw new PasswordMatcher("newPassword and ConfirmPassword doesn't match");
+        }
+        Optional<Employees> emp = employeeRepository.findByEmail(changePasswordDTO.getEmail());
+        if(emp.isPresent()){
+            Employees employees = emp.get();
+            if(passwordEncoder.matches(changePasswordDTO.getOldPassword(), employees.getPassword()))
+            {
+                employees.setPassword(passwordEncoder.encode(changePasswordDTO.getNewPassword()));
+                employeeRepository.save(employees);
+                return true;
+            }
+            else{
+                throw new PasswordMatcher("Old Password incorrect");
+            }
+        }
+        else{
+            throw new UserNotFoundException("Email doesn't exists");
+        }
     }
 
     private EmployeeWithListDTO mapEmployeeWithSortedTasks(Employees employees) {
